@@ -15,7 +15,8 @@ describe("rbacHas", () => {
       const checkAccess = rbacHas(ROLE_EDITOR);
       expect(checkAccess(createPayloadRequest())).toBe(false);
       expect(checkAccess(createPayloadRequest(undefined))).toBe(false);
-      expect(checkAccess(createPayloadRequest(null as any))).toBe(false);
+      // @ts-expect-error Testing edge case
+      expect(checkAccess(createPayloadRequest(null))).toBe(false);
     });
 
     it("should return false when user exists but roles is not an integer", () => {
