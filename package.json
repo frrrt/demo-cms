@@ -10,7 +10,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint --max-warnings 0",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "prettier": "prettier --write **/*.{js,jsx,ts,tsx}",
@@ -21,7 +21,7 @@
     "test:changed": "jest --changedSince=main --verbose",
     "check:types": "tsc --noEmit",
     "prepare": "husky install",
-    "validate": "npm-run-all --parallel check:types test:changed"
+    "validate": "npm-run-all --parallel check:types test:changed lint"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "latest",
