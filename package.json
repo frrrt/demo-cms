@@ -14,10 +14,12 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "prettier": "prettier --write **/*.{js,jsx,ts,tsx}",
+    "prettier:check": "prettier --check **/*.{js,jsx,ts,tsx}",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:changed": "jest --changedSince=main --verbose"
+    "test:changed": "jest --changedSince=main --verbose",
+    "check:types": "tsc --noEmit"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "latest",
