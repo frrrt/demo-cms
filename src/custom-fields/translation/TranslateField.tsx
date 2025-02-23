@@ -9,7 +9,7 @@ import { fetcher } from "../../helper/fetcher";
 import { TranslationSelect } from "./TranslationSelect";
 import { getTranslationUrl } from "./getTranslationUrl";
 
-export default function InputField({ path, readOnly }: TextFieldClientProps) {
+export default function TranslateField({ path, readOnly }: Pick<TextFieldClientProps, "path" | "readOnly">) {
   const documentInfo = useDocumentInfo();
   const { code: locale } = useLocale();
   const [shouldFetchTranslations, setShouldFetchTranslations] = useState(false);
