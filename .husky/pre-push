@@ -2,3 +2,15 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npm run validate
+
+# Generate and check files
+pnpm generate:types
+pnpm generate:importmap
+prettier --write src/payload-types.ts src/app/(payload)/admin/importMap.js
+
+# Check if files changed
+if ! git diff --quiet src/payload-types.ts src/app/(payload)/admin/importMap.js; then
+    echo "⛔ Generated files are out of sync with code changes."
+    echo "Please commit the updated generated files before pushing."
+    exit 1
+fi
