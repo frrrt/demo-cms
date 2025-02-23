@@ -12,6 +12,8 @@ import Pages from "./collections/Pages";
 import UIStrings from "./collections/UIString";
 import { DEFAULT_LOCALE, LOCALES } from "./const/locales";
 import { UiStringMedia } from "./collections/UIStringMedia";
+import { translateString } from "./custom-endpoints/translateString";
+import Settings from "./collections/Settings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -29,6 +31,7 @@ export default buildConfig({
     fallback: true,
   },
   collections: [Users, Media, Pages, UIStrings, UiStringMedia],
+  globals: [Settings],
   editor: slateEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
