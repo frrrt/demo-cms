@@ -1,14 +1,12 @@
-import OpenAI from "openai";
 import type { Endpoint, PayloadRequest } from "payload";
 import { getSettings } from "./getSettings";
 import { validateTranslationResponse } from "./validateTranslationResponse";
 import { generateChatCompletion } from "./generateChatCompletion";
 import { validateQueryParams } from "./validateQueryParams";
-
-export const openai = new OpenAI();
+import { ROUTE_TRANSLATION_STRING } from "@/const/routes";
 
 export const translateString: Endpoint = {
-  path: "/translate-string",
+  path: ROUTE_TRANSLATION_STRING,
   method: "get",
   handler: async (req: PayloadRequest) => {
     if (!req.user) {

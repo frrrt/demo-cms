@@ -1,5 +1,10 @@
+import OpenAI from "openai";
 import { toolsDefinition } from "./toolsDefinition";
-import { openai } from "./translateString";
+
+const openai = new OpenAI();
+
+const ESTIMATED_AVERAGE_CHARS_PER_TOKEN = 2.3;
+const MAX_OPTIONS = 5;
 
 export async function generateChatCompletion(
   askChatgptPrompt: string,
@@ -30,7 +35,7 @@ export async function generateChatCompletion(
       tools: toolsDefinition,
       tool_choice: "auto",
       temperature: 0.7,
-      max_tokens: Math.max(256, Math.round(((term as string).length / 2.3) * 5)), // 5 is the number of options
+      max_tokens: Math.max(256, Math.round((term.length / ESTIMATED_AVERAGE_CHARS_PER_TOKEN) * MAX_OPTIONS)),
       top_p: 1,
     });
   } catch (error) {
