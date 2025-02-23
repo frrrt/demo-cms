@@ -1,0 +1,7 @@
+.default-language-text-field {
+  & > div {
+    background-color: #eee;
+    padding: calc(var(--base) / 4);
+    padding-left: calc(var(--base) / 2);
+  }
+}

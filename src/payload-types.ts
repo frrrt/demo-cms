@@ -69,6 +69,8 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    "ui-strings": UiString;
+    "ui-string-media": UiStringMedia;
     "payload-locked-documents": PayloadLockedDocument;
     "payload-preferences": PayloadPreference;
     "payload-migrations": PayloadMigration;
@@ -78,6 +80,8 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    "ui-strings": UiStringsSelect<false> | UiStringsSelect<true>;
+    "ui-string-media": UiStringMediaSelect<false> | UiStringMediaSelect<true>;
     "payload-locked-documents": PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -87,7 +91,7 @@ export interface Config {
   };
   globals: {};
   globalsSelect: {};
-  locale: null;
+  locale: "en-US" | "de-DE" | "fr-FR" | "ja-JP" | "ar-SA";
   user: User & {
     collection: "users";
   };
@@ -170,6 +174,36 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ui-strings".
+ */
+export interface UiString {
+  id: string;
+  text?: string | null;
+  description?: string | null;
+  "context-image"?: (string | null) | UiStringMedia;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ui-string-media".
+ */
+export interface UiStringMedia {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -186,6 +220,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "pages";
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: "ui-strings";
+        value: string | UiString;
+      } | null)
+    | ({
+        relationTo: "ui-string-media";
+        value: string | UiStringMedia;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -275,6 +317,35 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ui-strings_select".
+ */
+export interface UiStringsSelect<T extends boolean = true> {
+  id?: T;
+  text?: T;
+  description?: T;
+  "context-image"?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ui-string-media_select".
+ */
+export interface UiStringMediaSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

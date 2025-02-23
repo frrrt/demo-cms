@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm run validate
-
 # Generate import map and payload types
 pnpm generate:types
 pnpm generate:importmap
@@ -14,3 +12,5 @@ if ! git diff --quiet "src/payload-types.ts" "src/app/(payload)/admin/importMap.
     echo "Please commit the updated generated files before pushing."
     exit 1
 fi
+
+pnpm run validate

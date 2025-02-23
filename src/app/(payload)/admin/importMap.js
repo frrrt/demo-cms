@@ -43,6 +43,8 @@ import { UnorderedListElement as UnorderedListElement_0b388c087d9de8c4f011dd323a
 import { UploadElementButton as UploadElementButton_0b388c087d9de8c4f011dd323a130cfb } from "@payloadcms/richtext-slate/client";
 import { UploadElement as UploadElement_0b388c087d9de8c4f011dd323a130cfb } from "@payloadcms/richtext-slate/client";
 import { WithUpload as WithUpload_0b388c087d9de8c4f011dd323a130cfb } from "@payloadcms/richtext-slate/client";
+import { default as default_7e67357763c812bcd3d451d8e0036d39 } from "@/custom-fields/default-language-text/DefaultLanguageTextField";
+import { default as default_b89ec98d141f48f4563acf9fb4e24bfa } from "@/custom-fields/default-language-text/DefaultLanguageTextCell";
 
 export const importMap = {
   "@/custom-fields/rbac/Cell#default": default_e251ea630c46c552ef9b08c4c489d786,
@@ -90,4 +92,6 @@ export const importMap = {
   "@payloadcms/richtext-slate/client#UploadElementButton": UploadElementButton_0b388c087d9de8c4f011dd323a130cfb,
   "@payloadcms/richtext-slate/client#UploadElement": UploadElement_0b388c087d9de8c4f011dd323a130cfb,
   "@payloadcms/richtext-slate/client#WithUpload": WithUpload_0b388c087d9de8c4f011dd323a130cfb,
+  "@/custom-fields/default-language-text/DefaultLanguageTextField#default": default_7e67357763c812bcd3d451d8e0036d39,
+  "@/custom-fields/default-language-text/DefaultLanguageTextCell#default": default_b89ec98d141f48f4563acf9fb4e24bfa,
 };

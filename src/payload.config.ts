@@ -9,6 +9,9 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import Pages from "./collections/Pages";
+import UIStrings from "./collections/UIString";
+import { DEFAULT_LOCALE, LOCALES } from "./const/locales";
+import { UiStringMedia } from "./collections/UIStringMedia";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -20,7 +23,12 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Pages],
+  localization: {
+    locales: LOCALES,
+    defaultLocale: DEFAULT_LOCALE,
+    fallback: true,
+  },
+  collections: [Users, Media, Pages, UIStrings, UiStringMedia],
   editor: slateEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -34,6 +42,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: true,
+        "ui-string-media": true,
       },
       bucket: process.env.S3_BUCKET ?? "",
       config: {
