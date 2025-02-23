@@ -1,5 +1,5 @@
 import { default as default_e251ea630c46c552ef9b08c4c489d786 } from "@/custom-fields/rbac/Cell";
-import { default as default_53b93c8bb7dd34e783c123a038f3a3f2 } from "@/custom-fields/rbac/RolesField";
+import { default as default_53b93c8bb7dd34e783c123a038f3a3f2 } from "@/custom-fields/rbac/InputField";
 import { RscEntrySlateCell as RscEntrySlateCell_0e78253914a550fdacd75626f1dabe17 } from "@payloadcms/richtext-slate/rsc";
 import { RscEntrySlateField as RscEntrySlateField_0e78253914a550fdacd75626f1dabe17 } from "@payloadcms/richtext-slate/rsc";
 import { BoldLeafButton as BoldLeafButton_0b388c087d9de8c4f011dd323a130cfb } from "@payloadcms/richtext-slate/client";
