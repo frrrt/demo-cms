@@ -2,62 +2,41 @@
 import { DEFAULT_LOCALE } from "@/const/locales";
 import { FieldLabel, useDocumentInfo, useField, useLocale } from "@payloadcms/ui";
 import { TextFieldClientProps } from "payload";
-import React, { useState, useEffect } from "react";
+import React, { useState, type MouseEvent } from "react";
+import useSWR from "swr";
+import { fetcher } from "../../helper/fetcher";
 
 export default function InputField({ path, readOnly }: TextFieldClientProps) {
   const documentInfo = useDocumentInfo();
   const { code: locale } = useLocale();
-  const [translations, setTranslations] = useState([]);
-  const [load, setLoad] = useState("");
-  const [term, setTerm] = useState("");
-  const [context, setContext] = useState("");
+  const [shouldFetchTranslations, setShouldFetchTranslations] = useState(false);
 
-  useEffect(() => {
-    const call = async () => {
-      if (!documentInfo?.id) {
-        return;
-      }
+  const { data: documentData } = useSWR(
+    documentInfo?.id ? `/api/${documentInfo.collectionSlug}/${documentInfo.id}?draft=false&depth=1` : null,
+    fetcher,
+  );
 
-      await fetch(`/api/${documentInfo.collectionSlug}/${documentInfo.id}?draft=false&depth=1`)
-        .then((response) => response.json())
-        .then((data) => {
-          setContext(data.description);
-          setTerm(data[path]);
-        });
-    };
-    call();
-  }, [documentInfo, path]);
+  const term = documentData?.[path] || "";
+  const context = documentData?.description || "";
 
-  useEffect(() => {
-    if (load === "loading") {
-      if (term === "") {
-        console.error("Term is empty. Either the default is not set or there was an error fetching it.");
-      }
-
-      const call = async () => {
-        const params = new URLSearchParams({
+  const { data: translations, isLoading: isLoadingTranslations } = useSWR(
+    shouldFetchTranslations && term
+      ? `/api/translate-string?${new URLSearchParams({
           locale,
           term,
           context: JSON.stringify(context),
-        }).toString();
-
-        await fetch(`/api/translate-string?${params}`, {
-          method: "GET",
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            setTranslations(data);
-            setLoad("done");
-          });
-      };
-
-      call();
-    }
-  }, [context, load, locale, term]);
+        }).toString()}`
+      : null,
+    fetcher,
+  );
 
   const { value = "", setValue } = useField<string>({
     path,
   });
+
+  if (!documentInfo?.id) {
+    return null;
+  }
 
   return (
     <div className="custom-translation-picker field-type text">
@@ -65,38 +44,33 @@ export default function InputField({ path, readOnly }: TextFieldClientProps) {
 
       <input type="text" id={path} value={value} onChange={(e) => setValue(e.target.value)} disabled={readOnly} />
 
-      {locale !== DEFAULT_LOCALE && documentInfo.id && (
-        <>
-          <div style={{ marginTop: "calc(var(--base) / 4)" }}>
-            <button
-              onClick={(e) => {
-                setLoad("loading");
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              style={{ marginRight: "calc(var(--base) / 2)" }}
-              disabled={readOnly || term === ""}
-            >
-              Ask ChatGPT
-            </button>
-            {load === "loading" && <span>Loading...</span>}
-            {load === "done" && (
-              <select
-                name="translations"
-                id="translation-select"
-                onChange={(e) => {
-                  setValue(e.target.value);
-                }}
-              >
-                {["Translations:", ...translations].map((translation, i) => (
-                  <option key={translation + i} value={translation}>
-                    {translation}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
-        </>
+      {locale !== DEFAULT_LOCALE && (
+        <div style={{ marginTop: "calc(var(--base) / 4)" }}>
+          <button
+            onClick={(e: MouseEvent) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setShouldFetchTranslations(true);
+            }}
+            style={{ marginRight: "calc(var(--base) / 2)" }}
+            disabled={readOnly || !term}
+          >
+            Ask ChatGPT
+          </button>
+
+          {isLoadingTranslations && <span>Loading...</span>}
+
+          {translations && (
+            <select name="translations" id="translation-select" onChange={(e) => setValue(e.target.value)}>
+              <option value="">Translations:</option>
+              {translations.map((translation: string, i: number) => (
+                <option key={`${translation}-${i}`} value={translation}>
+                  {translation}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
       )}
     </div>
   );
