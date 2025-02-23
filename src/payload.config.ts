@@ -12,7 +12,7 @@ import Pages from "./collections/Pages";
 import UIStrings from "./collections/UIString";
 import { DEFAULT_LOCALE, LOCALES } from "./const/locales";
 import { UiStringMedia } from "./collections/UIStringMedia";
-import { translateString } from "./custom-endpoints/translateString";
+import { translateString } from "./custom-endpoints/translateString/translateString";
 import Settings from "./collections/Settings";
 
 const filename = fileURLToPath(import.meta.url);
@@ -57,6 +57,7 @@ export default buildConfig({
       },
     }),
   ],
+  endpoints: [translateString],
   graphQL: {
     disable: true,
   },
