@@ -45,12 +45,11 @@ const UIStrings: CollectionConfig = {
       // Must NOT be required, as we want to be able to have empty strings for some locales
       required: false,
       localized: true,
-      //   admin: {
-      //     components: {
-      //       Field: (props) => <InputField {...props} minVariations={3} maxVariations={5} />,
-      //       Cell,
-      //     },
-      //   },
+      admin: {
+        components: {
+          Field: "@/custom-fields/translation/TranslateField",
+        },
+      },
     },
     {
       name: "description",

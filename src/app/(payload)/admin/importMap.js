@@ -45,6 +45,7 @@ import { UploadElement as UploadElement_0b388c087d9de8c4f011dd323a130cfb } from 
 import { WithUpload as WithUpload_0b388c087d9de8c4f011dd323a130cfb } from "@payloadcms/richtext-slate/client";
 import { default as default_7e67357763c812bcd3d451d8e0036d39 } from "@/custom-fields/default-language-text/DefaultLanguageTextField";
 import { default as default_b89ec98d141f48f4563acf9fb4e24bfa } from "@/custom-fields/default-language-text/DefaultLanguageTextCell";
+import { default as default_b4269fb77b98dc3ec18f9935599eb1f2 } from "@/custom-fields/translation/TranslateField";
 import { default as default_e31bcf515cd8b862fdf66b686993753c } from "@/custom-fields/select-chatgpt-models/SelectField";
 
 export const importMap = {
@@ -95,5 +96,6 @@ export const importMap = {
   "@payloadcms/richtext-slate/client#WithUpload": WithUpload_0b388c087d9de8c4f011dd323a130cfb,
   "@/custom-fields/default-language-text/DefaultLanguageTextField#default": default_7e67357763c812bcd3d451d8e0036d39,
   "@/custom-fields/default-language-text/DefaultLanguageTextCell#default": default_b89ec98d141f48f4563acf9fb4e24bfa,
+  "@/custom-fields/translation/TranslateField#default": default_b4269fb77b98dc3ec18f9935599eb1f2,
   "@/custom-fields/select-chatgpt-models/SelectField#default": default_e31bcf515cd8b862fdf66b686993753c,
 };
