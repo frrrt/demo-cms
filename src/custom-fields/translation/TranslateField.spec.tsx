@@ -4,17 +4,25 @@ import TranslateField from "./TranslateField";
 import { DEFAULT_LOCALE } from "@/const/locales";
 import * as PayloadUI from "@payloadcms/ui";
 import useSWR from "swr";
+import type { ReactNode, ChangeEvent } from "react";
 
-// Mock dependencies
 jest.mock("swr");
 jest.mock("@payloadcms/ui", () => ({
-  Button: ({ children, onClick, disabled }: any) => (
+  Button: ({ children, onClick, disabled }: { children: ReactNode; onClick: () => void; disabled: boolean }) => (
     <button onClick={onClick} disabled={disabled}>
       {children}
     </button>
   ),
-  FieldLabel: ({ label }: any) => <label>{label}</label>,
-  TextInput: ({ value, onChange, readOnly }: any) => <input value={value} onChange={onChange} readOnly={readOnly} />,
+  FieldLabel: ({ label }: { label: string }) => <label>{label}</label>,
+  TextInput: ({
+    value,
+    onChange,
+    readOnly,
+  }: {
+    value: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    readOnly: boolean;
+  }) => <input value={value} onChange={onChange} readOnly={readOnly} />,
   useDocumentInfo: jest.fn(),
   useField: jest.fn(),
   useLocale: jest.fn(),
@@ -27,7 +35,6 @@ describe("TranslateField", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    // Default mock implementations
     (PayloadUI.useDocumentInfo as jest.Mock).mockReturnValue({
       id: "123",
       collectionSlug: "posts",
@@ -123,7 +130,7 @@ describe("TranslateField", () => {
           error: null,
         };
       }
-      // Translation request
+
       fetchCount++;
       if (fetchCount > 1) {
         return {
@@ -161,7 +168,7 @@ describe("TranslateField", () => {
           error: null,
         };
       }
-      // Translation request
+
       fetchCount++;
       if (fetchCount > 1) {
         return {
