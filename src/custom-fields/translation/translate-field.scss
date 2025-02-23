@@ -1,0 +1,17 @@
+.custom-translation-picker {
+  .translation-picker {
+    display: flex;
+    margin-top: calc(var(--base) / 4);
+
+    button {
+      margin: 0;
+      margin-right: calc(var(--base) / 4);
+    }
+
+    select {
+      height: 24px;
+      border-color: var(--theme-elevation-800);
+      border-radius: 3px;
+    }
+  }
+}

@@ -1,10 +1,12 @@
 "use client";
+import "./translate-field.scss";
 import { DEFAULT_LOCALE } from "@/const/locales";
-import { FieldLabel, useDocumentInfo, useField, useLocale } from "@payloadcms/ui";
+import { Button, FieldLabel, TextInput, useDocumentInfo, useField, useLocale } from "@payloadcms/ui";
 import { TextFieldClientProps } from "payload";
-import React, { useState, type MouseEvent } from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "../../helper/fetcher";
+import { TranslationSelect } from "./TranslationSelect";
 
 export default function InputField({ path, readOnly }: TextFieldClientProps) {
   const documentInfo = useDocumentInfo();
@@ -42,34 +44,26 @@ export default function InputField({ path, readOnly }: TextFieldClientProps) {
     <div className="custom-translation-picker field-type text">
       <FieldLabel path={path} label={`Text (${locale})`} />
 
-      <input type="text" id={path} value={value} onChange={(e) => setValue(e.target.value)} disabled={readOnly} />
+      <TextInput
+        path={path}
+        value={value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+      />
 
       {locale !== DEFAULT_LOCALE && (
-        <div style={{ marginTop: "calc(var(--base) / 4)" }}>
-          <button
-            onClick={(e: MouseEvent) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setShouldFetchTranslations(true);
-            }}
-            style={{ marginRight: "calc(var(--base) / 2)" }}
+        <div className="translation-picker">
+          <Button
+            size="small"
+            buttonStyle="secondary"
+            onClick={() => setShouldFetchTranslations(true)}
             disabled={readOnly || !term}
           >
             Ask ChatGPT
-          </button>
+          </Button>
 
           {isLoadingTranslations && <span>Loading...</span>}
 
-          {translations && (
-            <select name="translations" id="translation-select" onChange={(e) => setValue(e.target.value)}>
-              <option value="">Translations:</option>
-              {translations.map((translation: string, i: number) => (
-                <option key={`${translation}-${i}`} value={translation}>
-                  {translation}
-                </option>
-              ))}
-            </select>
-          )}
+          {translations && <TranslationSelect setValue={setValue} translations={translations} />}
         </div>
       )}
     </div>
