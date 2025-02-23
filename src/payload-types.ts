@@ -182,6 +182,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "media";
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: "pages";
+        value: string | Page;
       } | null);
   globalSlug?: string | null;
   user: {
