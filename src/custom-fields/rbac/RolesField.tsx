@@ -20,6 +20,7 @@ export default function RolesField({ path, readOnly }: { path: string; readOnly:
               checked={(value & role.value) === role.value}
               onChange={() => setValue(value ^ role.value)}
             />
+
             <label htmlFor={`${path}-${role.value}`}>{role.label}</label>
           </div>
         ))}
