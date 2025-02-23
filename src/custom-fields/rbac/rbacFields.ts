@@ -11,8 +11,8 @@ const rbacField: Field = {
   required: true,
   admin: {
     components: {
-      Field: "@/custom-fields/rbac/InputField",
-      Cell: "@/custom-fields/rbac/Cell",
+      Field: "@/custom-fields/rbac/RolesField",
+      Cell: "@/custom-fields/rbac/RolesCell",
     },
   },
   // Field level access control. In this case, only admins can create and update the roles.

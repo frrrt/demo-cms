@@ -1,5 +1,5 @@
-import { default as default_e251ea630c46c552ef9b08c4c489d786 } from "@/custom-fields/rbac/Cell";
-import { default as default_53b93c8bb7dd34e783c123a038f3a3f2 } from "@/custom-fields/rbac/InputField";
+import { default as default_107fc84b51989a9311b84df2fe9268f5 } from "@/custom-fields/rbac/RolesCell";
+import { default as default_4795e93826f23d1a51a17a382613ea2e } from "@/custom-fields/rbac/RolesField";
 import { RscEntrySlateCell as RscEntrySlateCell_0e78253914a550fdacd75626f1dabe17 } from "@payloadcms/richtext-slate/rsc";
 import { RscEntrySlateField as RscEntrySlateField_0e78253914a550fdacd75626f1dabe17 } from "@payloadcms/richtext-slate/rsc";
 import { BoldLeafButton as BoldLeafButton_0b388c087d9de8c4f011dd323a130cfb } from "@payloadcms/richtext-slate/client";
@@ -49,8 +49,8 @@ import { default as default_b4269fb77b98dc3ec18f9935599eb1f2 } from "@/custom-fi
 import { default as default_e31bcf515cd8b862fdf66b686993753c } from "@/custom-fields/select-chatgpt-models/SelectField";
 
 export const importMap = {
-  "@/custom-fields/rbac/Cell#default": default_e251ea630c46c552ef9b08c4c489d786,
-  "@/custom-fields/rbac/InputField#default": default_53b93c8bb7dd34e783c123a038f3a3f2,
+  "@/custom-fields/rbac/RolesCell#default": default_107fc84b51989a9311b84df2fe9268f5,
+  "@/custom-fields/rbac/RolesField#default": default_4795e93826f23d1a51a17a382613ea2e,
   "@payloadcms/richtext-slate/rsc#RscEntrySlateCell": RscEntrySlateCell_0e78253914a550fdacd75626f1dabe17,
   "@payloadcms/richtext-slate/rsc#RscEntrySlateField": RscEntrySlateField_0e78253914a550fdacd75626f1dabe17,
   "@payloadcms/richtext-slate/client#BoldLeafButton": BoldLeafButton_0b388c087d9de8c4f011dd323a130cfb,

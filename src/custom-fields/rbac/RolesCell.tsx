@@ -1,7 +1,7 @@
 import React from "react";
 import { ROLES } from "./roles";
 
-export default function Cell(props: { cellData: number }) {
+export default function RolesCell(props: { cellData: number }) {
   const { cellData } = props;
 
   const roleLabels = ROLES.filter((role) => (Number(cellData) & role.value) === role.value)
