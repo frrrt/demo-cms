@@ -32,11 +32,11 @@ const Pages: CollectionConfig = {
       label: "Title",
       type: "text",
       localized: true,
-      //   admin: {
-      //     components: {
-      //     //   Field: (props) => <InputField {...props} minVariations={3} maxVariations={5} />,
-      //     },
-      //   },
+      admin: {
+        components: {
+          Field: "@/custom-fields/translation/TranslateField",
+        },
+      },
     },
     {
       name: "image",
