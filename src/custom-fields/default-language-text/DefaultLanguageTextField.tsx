@@ -5,7 +5,7 @@ import DefaultLanguageTextCell from "./DefaultLanguageTextCell";
 import type { UIFieldServerProps } from "payload";
 import { DEFAULT_LOCALE } from "@/const/locales";
 
-export default function DefaultLanguageTextField({ path, data }: UIFieldServerProps) {
+export default function DefaultLanguageTextField({ path, data }: Pick<UIFieldServerProps, "path" | "data">) {
   return (
     data.id && (
       <div className="field-type default-language-text-field">
