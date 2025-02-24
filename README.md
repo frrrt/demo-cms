@@ -20,4 +20,4 @@ Hosting is done on Vercel, Mongo DB Atlas and AWS. Github and OpenAI are also us
 
 ## Setup
 
-Please reach out to me to get access to the hosted version of this project. Local setup is a bit complicated.
+Please reach out to me to get access to the hosted version of this project.
