@@ -1,6 +1,7 @@
 import rbacField from "@/custom-fields/rbac/rbacFields";
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
-import { ROLE_ADMIN } from "@/custom-fields/rbac/roles";
+import { isUser, ROLE_ADMIN } from "@/custom-fields/rbac/roles";
+import { isSelf } from "@/custom-fields/rbac/isSelf";
 import type { CollectionConfig } from "payload";
 
 export const Users: CollectionConfig = {
@@ -9,6 +10,13 @@ export const Users: CollectionConfig = {
     useAsTitle: "email",
   },
   auth: true,
+  access: {
+    read: isUser,
+    create: rbacHas(ROLE_ADMIN),
+    update: isSelf,
+    delete: rbacHas(ROLE_ADMIN),
+    unlock: rbacHas(ROLE_ADMIN),
+  },
   fields: [
     {
       name: "email",
