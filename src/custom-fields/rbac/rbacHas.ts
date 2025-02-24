@@ -2,8 +2,8 @@ import { PayloadRequest } from "payload";
 import { ROLE, isAuthenticated, ROLE_ADMIN } from "./roles";
 
 // This can either take a role or an array of roles to check against as argument.
-// Needs to be payload user. Admin is always allowed. Performs and OR check, aka
-// if user has any of the roles or is an admin.
+// Needs to be a payload user. Admin is always allowed. Performs an OR check, aka
+// if the user has any of the roles or is an admin.
 export function rbacHas(roles: ROLE | ROLE[]) {
   // Convert input roles to a single combined bitmap
   const combinedRoles = Array.isArray(roles) ? roles.reduce((acc, role) => acc | role, 0) : roles;

@@ -9,6 +9,8 @@ import { fetcher } from "../../helper/fetcher";
 import { TranslationSelect } from "./TranslationSelect";
 import { getTranslationUrl } from "./getTranslationUrl";
 
+// The TranslateField is not done as a Server Component, as the Open AI API is a paid service.
+// This setup, where the translations are only generated on specific user action should save costs.
 export default function TranslateField({ path, readOnly }: Pick<TextFieldClientProps, "path" | "readOnly">) {
   const documentInfo = useDocumentInfo();
   const { code: locale } = useLocale();

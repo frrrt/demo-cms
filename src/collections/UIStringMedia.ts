@@ -9,6 +9,7 @@ export const UiStringMedia: CollectionConfig = {
     plural: "UI String Media",
   },
   access: {
+    // Internal collection, where images are only ment as a help for translation efforts. So access is restricted.
     read: isUser,
     create: rbacHas(ROLE_TRANSLATOR),
     update: rbacHas(ROLE_TRANSLATOR),

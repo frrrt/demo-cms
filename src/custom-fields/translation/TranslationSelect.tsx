@@ -1,3 +1,5 @@
+// Custom select component, as the Payload UI select component behaves more like a full width input field
+// instead of this smaller inline select.
 export function TranslationSelect({
   setValue,
   translations,

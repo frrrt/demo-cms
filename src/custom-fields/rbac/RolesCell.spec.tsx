@@ -45,8 +45,6 @@ describe("Cell", () => {
 
     it("should handle negative values", () => {
       const { container } = render(<RolesCell cellData={-1} />);
-      // The behavior with negative numbers should be consistent
-      // Verify the actual expected behavior for your use case
       const expectedRoles = ROLES.filter((role) => (-1 & role.value) === role.value)
         .map((role) => role.label)
         .join(", ");

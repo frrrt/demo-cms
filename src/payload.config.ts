@@ -12,7 +12,7 @@ import Pages from "./collections/Pages";
 import UIStrings from "./collections/UIString";
 import { DEFAULT_LOCALE, LOCALES } from "./const/locales";
 import { UiStringMedia } from "./collections/UIStringMedia";
-import { translateString } from "./custom-endpoints/translateString/translateString";
+import { endpointTranslateString } from "./custom-endpoints/translateString/endpointTranslateString";
 import Settings from "./collections/Settings";
 
 const filename = fileURLToPath(import.meta.url);
@@ -43,6 +43,9 @@ export default buildConfig({
   sharp,
   plugins: [
     s3Storage({
+      // Both collections use the same S3 bucket, generally not a problem except for uploading the exact same file through both collections.
+      // In that case, if one collection deletes the file, it will be deleted from the S3 bucket, and the other collection will contain
+      // stale data. Should be fixed eventually.
       collections: {
         media: true,
         "ui-string-media": true,
@@ -57,7 +60,7 @@ export default buildConfig({
       },
     }),
   ],
-  endpoints: [translateString],
+  endpoints: [endpointTranslateString],
   graphQL: {
     disable: true,
   },

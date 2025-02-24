@@ -14,6 +14,7 @@ const UIStrings: CollectionConfig = {
   access: {
     read: () => true,
     create: rbacHas(ROLE_ADMIN),
+    // OR check for editor and translator roles.
     update: rbacHas([ROLE_TRANSLATOR, ROLE_EDITOR]),
     delete: rbacHas(ROLE_ADMIN),
     readVersions: () => true,
@@ -42,7 +43,8 @@ const UIStrings: CollectionConfig = {
       name: "text",
       type: "text",
       label: "Text",
-      // Must NOT be required, as we want to be able to have empty strings for some locales
+      // Must NOT be required, as we want to be able to have empty strings for some locales.
+      // It also helps with certain import/export features.
       required: false,
       localized: true,
       admin: {
@@ -62,7 +64,8 @@ const UIStrings: CollectionConfig = {
       type: "upload",
       relationTo: "ui-string-media",
       access: {
-        // The images are only for internal use to help the translators understand the context of the string
+        // The images are only for internal use to help the translators understand the context of the string,
+        // so we restrict them with field level access.
         read: isUser,
       },
     },

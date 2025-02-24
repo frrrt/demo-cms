@@ -5,6 +5,7 @@ import { GlobalConfig } from "payload";
 const Settings: GlobalConfig = {
   slug: "settings",
   access: {
+    // This is an internal collection, so we restrict access to users.
     read: isUser,
     update: rbacHas(ROLE_ADMIN),
   },

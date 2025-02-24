@@ -9,6 +9,7 @@ export const Users: CollectionConfig = {
   auth: true,
   fields: [
     // Email added by default
+    // Adding roles to user
     rbacField,
   ],
 };

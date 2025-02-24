@@ -7,6 +7,8 @@ const TranslationResponseSchema = object({
 
 type TranslationResponse = InferOutput<typeof TranslationResponseSchema>;
 
+// This validation is very important to ensure that the response from ChatGPT is correctly formatted.
+// With function calling this almost always is the case though.
 export function validateTranslationResponse(
   chatCompletion: (OpenAI.Chat.Completions.ChatCompletion & { _request_id?: string | null }) | undefined,
 ) {
