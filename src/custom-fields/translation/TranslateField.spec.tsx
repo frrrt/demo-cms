@@ -68,7 +68,7 @@ describe("TranslateField", () => {
   it("should not render when document ID is missing", () => {
     (PayloadUI.useDocumentInfo as jest.Mock).mockReturnValue({});
 
-    const { container } = render(<TranslateField path={mockPath} readOnly={false} />);
+    const { container } = render(<TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />);
     expect(container).toBeEmptyDOMElement();
   });
 
@@ -77,7 +77,7 @@ describe("TranslateField", () => {
       code: "fr",
     });
 
-    render(<TranslateField path={mockPath} readOnly={false} />);
+    render(<TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />);
 
     expect(screen.getByText("Text (fr)")).toBeInTheDocument();
   });
@@ -87,7 +87,7 @@ describe("TranslateField", () => {
       code: DEFAULT_LOCALE,
     });
 
-    render(<TranslateField path={mockPath} readOnly={false} />);
+    render(<TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />);
 
     expect(screen.queryByText("Ask ChatGPT")).not.toBeInTheDocument();
   });
@@ -110,7 +110,7 @@ describe("TranslateField", () => {
       };
     });
 
-    render(<TranslateField path={mockPath} readOnly={false} />);
+    render(<TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />);
 
     const button = screen.getByRole("button");
     expect(button).toBeDisabled();
@@ -142,7 +142,7 @@ describe("TranslateField", () => {
       return { data: null, error: null, isLoading: false };
     });
 
-    render(<TranslateField path={mockPath} readOnly={false} />);
+    render(<TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />);
 
     const button = screen.getByRole("button");
     expect(button).not.toBeDisabled();
@@ -180,7 +180,7 @@ describe("TranslateField", () => {
       return { data: null, error: null, isLoading: false };
     });
 
-    render(<TranslateField path={mockPath} readOnly={false} />);
+    render(<TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />);
 
     const button = screen.getByRole("button");
     fireEvent.click(button);
@@ -195,7 +195,7 @@ describe("TranslateField", () => {
   });
 
   it("should handle readOnly prop correctly", () => {
-    render(<TranslateField path={mockPath} readOnly={true} />);
+    render(<TranslateField path={mockPath} readOnly={true} field={{ name: "test" }} />);
 
     const input = screen.getByRole("textbox");
     expect(input).toHaveAttribute("readonly");

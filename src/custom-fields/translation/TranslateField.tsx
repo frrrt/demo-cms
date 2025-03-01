@@ -1,7 +1,7 @@
 "use client";
 import "./translate-field.scss";
 import { DEFAULT_LOCALE } from "@/const/locales";
-import { Button, FieldLabel, TextInput, useDocumentInfo, useField, useLocale } from "@payloadcms/ui";
+import { Button, FieldDescription, FieldLabel, TextInput, useDocumentInfo, useField, useLocale } from "@payloadcms/ui";
 import { TextFieldClientProps } from "payload";
 import { useState, type ChangeEvent } from "react";
 import useSWR from "swr";
@@ -11,7 +11,7 @@ import { getTranslationUrl } from "./getTranslationUrl";
 
 // The TranslateField is not done as a Server Component, as the Open AI API is a paid service.
 // This setup, where the translations are only generated on specific user action should save costs.
-export default function TranslateField({ path, readOnly }: Pick<TextFieldClientProps, "path" | "readOnly">) {
+export default function TranslateField({ path, readOnly, field }: TextFieldClientProps) {
   const documentInfo = useDocumentInfo();
   const { code: locale } = useLocale();
   const [shouldFetchTranslations, setShouldFetchTranslations] = useState(false);
@@ -40,7 +40,7 @@ export default function TranslateField({ path, readOnly }: Pick<TextFieldClientP
 
   return (
     <div className="custom-translation-picker field-type text">
-      <FieldLabel path={path} label={`Text (${locale})`} />
+      <FieldLabel path={path} {...field} />
 
       <TextInput
         path={path}
@@ -67,6 +67,8 @@ export default function TranslateField({ path, readOnly }: Pick<TextFieldClientP
           {translations && <TranslationSelect setValue={setValue} translations={translations} />}
         </div>
       )}
+
+      <FieldDescription path={path} description={field.admin?.description} />
     </div>
   );
 }
