@@ -1,7 +1,8 @@
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_ADMIN, ROLE_EDITOR } from "@/custom-fields/rbac/roles";
+import { Page } from "@/payload-types";
 import { validateAlphaNumeric } from "@/validation/validateAlphaNumeric";
-import { CollectionConfig } from "payload";
+import { CollectionConfig, PayloadRequest } from "payload";
 
 const Pages: CollectionConfig = {
   slug: "pages",
@@ -19,6 +20,26 @@ const Pages: CollectionConfig = {
     //   ({ host, data, locale }) =>
     //     `${host}/${locale.code}/preview/page-preview?token=iwhef9823rh24r2hfsfh89234rlajkcvmni45r&pageSlug=${data.id}`,
     // ),
+  },
+  hooks: {
+    afterChange: [
+      async ({ doc, req }: { doc: Page; req: PayloadRequest }) => {
+        const response = await fetch(process.env.NEXTJS_FRONTEND_URL + "/api/revalidate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            path: doc.id,
+            token: process.env.REVALIDATION_TOKEN,
+          }),
+        });
+
+        if (!response.ok) {
+          req.payload.logger.error(`Failed to revalidate page: '${doc.id}'. Response: `, await response.json());
+        }
+      },
+    ],
   },
   fields: [
     {
