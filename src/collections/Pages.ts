@@ -18,8 +18,8 @@ const Pages: CollectionConfig = {
     useAsTitle: "title",
     listSearchableFields: ["title", "slug"],
     livePreview: {
-      url: ({ data }) =>
-        `${process.env.NEXTJS_FRONTEND_URL}/page-preview?token=${process.env.PREVIEW_TOKEN}&slug=${data.id}`,
+      url: ({ data, req }) =>
+        `${process.env.NEXTJS_FRONTEND_URL}/${req.locale}/page-preview?token=${process.env.PREVIEW_TOKEN}&slug=${data.id}`,
     },
   },
   hooks: {
