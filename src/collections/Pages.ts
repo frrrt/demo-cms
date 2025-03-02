@@ -1,3 +1,4 @@
+import { DEFAULT_LOCALE } from "@/const/locales";
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_ADMIN, ROLE_EDITOR } from "@/custom-fields/rbac/roles";
 import { Page } from "@/payload-types";
@@ -30,8 +31,8 @@ const Pages: CollectionConfig = {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            path: doc.id,
             token: process.env.REVALIDATION_TOKEN,
+            tag: (req.locale || DEFAULT_LOCALE) + "-" + doc.id,
           }),
         });
 
