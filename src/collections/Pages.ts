@@ -16,10 +16,10 @@ const Pages: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     listSearchableFields: ["title", "slug"],
-    // livePreview: createLivePreview(
-    //   ({ host, data, locale }) =>
-    //     `${host}/${locale.code}/preview/page-preview?token=iwhef9823rh24r2hfsfh89234rlajkcvmni45r&pageSlug=${data.id}`,
-    // ),
+    livePreview: {
+      url: ({ data }) =>
+        `${process.env.NEXTJS_FRONTEND_URL}/page-preview?token=${process.env.PREVIEW_TOKEN}&slug=${data.id}`,
+    },
   },
   hooks: {
     afterChange: [
