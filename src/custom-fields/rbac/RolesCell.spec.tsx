@@ -55,7 +55,9 @@ describe("Cell", () => {
   describe("type coercion", () => {
     it("should handle string numbers", () => {
       const roleValue = ROLES[0].value;
-      const { container } = render(<RolesCell cellData={roleValue.toString() as unknown as number} />);
+      const { container } = render(
+        <RolesCell cellData={roleValue.toString() as unknown as number} />,
+      );
       expect(container).toHaveTextContent(ROLES[0].label);
     });
 

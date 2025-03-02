@@ -47,7 +47,10 @@ describe("isSelf", () => {
       (isUser as jest.Mock).mockReturnValue(true);
       (rbacHas as jest.Mock).mockImplementation(() => () => false);
 
-      const req = createMockRequest({ email: "user@example.com", id: "123" }, { email: "different@example.com" });
+      const req = createMockRequest(
+        { email: "user@example.com", id: "123" },
+        { email: "different@example.com" },
+      );
 
       const result = isSelf({ req });
 

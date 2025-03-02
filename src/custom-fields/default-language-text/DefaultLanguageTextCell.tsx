@@ -7,7 +7,9 @@ const payload = await getPayload({ config });
 import { DEFAULT_LOCALE } from "@/const/locales";
 import { UISTRING_SLUG } from "@/collections/UIString";
 
-export default async function DefaultLanguageTextCell({ rowData }: Pick<DefaultCellComponentProps, "rowData">) {
+export default async function DefaultLanguageTextCell({
+  rowData,
+}: Pick<DefaultCellComponentProps, "rowData">) {
   if (!rowData?.id) {
     return null;
   }

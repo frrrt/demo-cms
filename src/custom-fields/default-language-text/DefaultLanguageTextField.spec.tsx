@@ -12,7 +12,9 @@ jest.mock("@payloadcms/ui", () => ({
 }));
 
 jest.mock("./DefaultLanguageTextCell", () => {
-  return jest.fn(({ rowData }) => <div data-testid="default-language-text-cell">ID: {rowData.id}</div>);
+  return jest.fn(({ rowData }) => (
+    <div data-testid="default-language-text-cell">ID: {rowData.id}</div>
+  ));
 });
 
 describe("DefaultLanguageTextField", () => {

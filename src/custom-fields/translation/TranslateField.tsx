@@ -1,7 +1,15 @@
 "use client";
 import "./translate-field.scss";
 import { DEFAULT_LOCALE } from "@/const/locales";
-import { Button, FieldDescription, FieldLabel, TextInput, useDocumentInfo, useField, useLocale } from "@payloadcms/ui";
+import {
+  Button,
+  FieldDescription,
+  FieldLabel,
+  TextInput,
+  useDocumentInfo,
+  useField,
+  useLocale,
+} from "@payloadcms/ui";
 import { TextFieldClientProps } from "payload";
 import { useState, type ChangeEvent } from "react";
 import useSWR from "swr";
@@ -17,7 +25,9 @@ export default function TranslateField({ path, readOnly, field }: TextFieldClien
   const [shouldFetchTranslations, setShouldFetchTranslations] = useState(false);
 
   const { data: documentData, error: documentError } = useSWR(
-    documentInfo?.id ? `/api/${documentInfo.collectionSlug}/${documentInfo.id}?draft=false&depth=1` : null,
+    documentInfo?.id
+      ? `/api/${documentInfo.collectionSlug}/${documentInfo.id}?draft=false&depth=1`
+      : null,
     fetcher,
   );
 
@@ -28,15 +38,14 @@ export default function TranslateField({ path, readOnly, field }: TextFieldClien
     data: translations,
     isLoading: isLoadingTranslations,
     error: translationError,
-  } = useSWR(shouldFetchTranslations && term ? getTranslationUrl(locale, term, context) : null, fetcher);
+  } = useSWR(
+    shouldFetchTranslations && term ? getTranslationUrl(locale, term, context) : null,
+    fetcher,
+  );
 
   const { value = "", setValue } = useField<string>({
     path,
   });
-
-  if (!documentInfo?.id) {
-    return null;
-  }
 
   return (
     <div className="custom-translation-picker field-type text">
@@ -62,7 +71,9 @@ export default function TranslateField({ path, readOnly, field }: TextFieldClien
             {isLoadingTranslations ? "Translating..." : "Ask ChatGPT"}
           </Button>
 
-          {translationError && <div className="translation-error">Translation request failed. Please try again.</div>}
+          {translationError && (
+            <div className="translation-error">Translation request failed. Please try again.</div>
+          )}
 
           {translations && <TranslationSelect setValue={setValue} translations={translations} />}
         </div>

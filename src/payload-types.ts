@@ -82,7 +82,9 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     "ui-strings": UiStringsSelect<false> | UiStringsSelect<true>;
     "ui-string-media": UiStringMediaSelect<false> | UiStringMediaSelect<true>;
-    "payload-locked-documents": PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
     "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };

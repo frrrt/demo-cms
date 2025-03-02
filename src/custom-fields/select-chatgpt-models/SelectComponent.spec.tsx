@@ -15,7 +15,12 @@ jest.mock("@payloadcms/ui", () => ({
     options: OptionObject[];
     name: string;
   }) => (
-    <select data-testid="select-input" value={value} name={name} onChange={(e) => onChange({ value: e.target.value })}>
+    <select
+      data-testid="select-input"
+      value={value}
+      name={name}
+      onChange={(e) => onChange({ value: e.target.value })}
+    >
       <option value="">Select an option</option>
       {options.map((opt: OptionObject) => (
         <option key={opt.value} value={opt.value}>

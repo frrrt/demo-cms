@@ -31,7 +31,13 @@ export const endpointTranslateString: Endpoint = {
 
     const { askChatgptPrompt, model } = await getSettings(req);
 
-    const chatCompletion = await generateChatCompletion(askChatgptPrompt, locale, context, model, term);
+    const chatCompletion = await generateChatCompletion(
+      askChatgptPrompt,
+      locale,
+      context,
+      model,
+      term,
+    );
 
     const result = validateTranslationResponse(chatCompletion);
 

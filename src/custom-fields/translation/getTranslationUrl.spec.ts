@@ -10,7 +10,9 @@ describe("getTranslationUrl", () => {
   it("should properly encode special characters in term", () => {
     const url = getTranslationUrl("de", "hello & goodbye", "greeting");
 
-    expect(url).toBe(`/api/translate-string?locale=de&term=hello+%26+goodbye&context=%22greeting%22`);
+    expect(url).toBe(
+      `/api/translate-string?locale=de&term=hello+%26+goodbye&context=%22greeting%22`,
+    );
   });
 
   it("should handle special characters in locale", () => {
@@ -29,6 +31,8 @@ describe("getTranslationUrl", () => {
     const context = "button/primary&secondary";
     const url = getTranslationUrl("it", "save", context);
 
-    expect(url).toBe(`/api/translate-string?locale=it&term=save&context=%22button%2Fprimary%26secondary%22`);
+    expect(url).toBe(
+      `/api/translate-string?locale=it&term=save&context=%22button%2Fprimary%26secondary%22`,
+    );
   });
 });

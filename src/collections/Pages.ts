@@ -36,7 +36,10 @@ const Pages: CollectionConfig = {
         });
 
         if (!response.ok) {
-          req.payload.logger.error(`Failed to revalidate page: '${doc.id}'. Response: `, await response.json());
+          req.payload.logger.error(
+            `Failed to revalidate page: '${doc.id}'. Response: `,
+            await response.json(),
+          );
         }
       },
     ],

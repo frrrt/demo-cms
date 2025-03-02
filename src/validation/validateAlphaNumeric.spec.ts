@@ -51,7 +51,9 @@ describe("validateAlphaNumeric", () => {
       const validateEmail = validateAlphaNumeric("email");
       const validatePassword = validateAlphaNumeric("password");
 
-      expect(validateEmail("user@123")).toBe("email can only contain alphanumeric characters and hyphens");
+      expect(validateEmail("user@123")).toBe(
+        "email can only contain alphanumeric characters and hyphens",
+      );
       expect(validatePassword("")).toBe("password cannot be empty");
       expect(validatePassword(123)).toBe("password must be a string");
     });

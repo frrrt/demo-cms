@@ -37,7 +37,12 @@ export async function generateChatCompletion(
   return chatCompletion;
 }
 
-function replaceTemplateVariables(locale: string, context: string, term: string, askChatgptPrompt: string) {
+function replaceTemplateVariables(
+  locale: string,
+  context: string,
+  term: string,
+  askChatgptPrompt: string,
+) {
   const replacements = {
     "{locale}": locale.toString(),
     "{context}": context,
@@ -46,7 +51,10 @@ function replaceTemplateVariables(locale: string, context: string, term: string,
 
   const regex = new RegExp(Object.keys(replacements).join("|"), "g");
 
-  return askChatgptPrompt.replace(regex, (match) => replacements[match as keyof typeof replacements]);
+  return askChatgptPrompt.replace(
+    regex,
+    (match) => replacements[match as keyof typeof replacements],
+  );
 }
 
 // Generates a rough estimation, typically about 20% higher than needed to give the model some flexibility.

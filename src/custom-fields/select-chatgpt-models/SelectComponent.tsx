@@ -2,7 +2,13 @@
 import { SelectInput, useField } from "@payloadcms/ui";
 import { OptionObject } from "payload";
 
-export default function SelectComponent({ path, options }: { path: string; options: OptionObject[] }) {
+export default function SelectComponent({
+  path,
+  options,
+}: {
+  path: string;
+  options: OptionObject[];
+}) {
   const { value = "", setValue } = useField<string>({ path });
 
   return (

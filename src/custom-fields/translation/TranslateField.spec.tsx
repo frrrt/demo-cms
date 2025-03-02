@@ -8,7 +8,15 @@ import type { ReactNode, ChangeEvent } from "react";
 
 jest.mock("swr");
 jest.mock("@payloadcms/ui", () => ({
-  Button: ({ children, onClick, disabled }: { children: ReactNode; onClick: () => void; disabled: boolean }) => (
+  Button: ({
+    children,
+    onClick,
+    disabled,
+  }: {
+    children: ReactNode;
+    onClick: () => void;
+    disabled: boolean;
+  }) => (
     <button onClick={onClick} disabled={disabled}>
       {children}
     </button>
@@ -68,7 +76,9 @@ describe("TranslateField", () => {
   it("should not render when document ID is missing", () => {
     (PayloadUI.useDocumentInfo as jest.Mock).mockReturnValue({});
 
-    const { container } = render(<TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />);
+    const { container } = render(
+      <TranslateField path={mockPath} readOnly={false} field={{ name: "test" }} />,
+    );
     expect(container).toBeEmptyDOMElement();
   });
 
