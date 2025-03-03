@@ -1,6 +1,6 @@
 # Demo CMS
 
-This is a demo project to show some cool features of Payload CMS in combination with ChatGPT.
+This is a demo project to show some cool features of Payload CMS in combination with ChatGPT and a standalone NextJS Frontend.
 
 Notable features include:
 
@@ -13,6 +13,7 @@ Notable features include:
 - **Server Components**: see `src/custom-fields/select-chatgpt-models/SelectField`
 - **S3 Storage Plugin for Payload CMS**: see `payload.config.ts`
 - **Media Collections with Upload functionality**: see `src/collections/Media` and `src/collections/UIStringMedia`
+- **Live Preview and tag base cache revalidation**: see `src/collections/Pages`
 
 ## Hosting
 
