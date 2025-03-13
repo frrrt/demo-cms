@@ -14,6 +14,7 @@ import { DEFAULT_LOCALE, LOCALES } from "./const/locales";
 import { UiStringMedia } from "./collections/UIStringMedia";
 import { endpointTranslateString } from "./custom-endpoints/translateString/endpointTranslateString";
 import Settings from "./collections/Settings";
+import { endpointGenerateAltText } from "./custom-endpoints/alt-text/endpointGenerateAltText";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -60,7 +61,7 @@ export default buildConfig({
       },
     }),
   ],
-  endpoints: [endpointTranslateString],
+  endpoints: [endpointTranslateString, endpointGenerateAltText],
   graphQL: {
     disable: true,
   },

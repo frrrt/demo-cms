@@ -1,5 +1,6 @@
 import { default as default_107fc84b51989a9311b84df2fe9268f5 } from "@/custom-fields/rbac/RolesCell";
 import { default as default_4795e93826f23d1a51a17a382613ea2e } from "@/custom-fields/rbac/RolesField";
+import { default as default_31e3c8050ee0801a8b2350926031bd4c } from "@/custom-fields/alt-text/AltTextField";
 import { default as default_b4269fb77b98dc3ec18f9935599eb1f2 } from "@/custom-fields/translation/TranslateField";
 import { RscEntrySlateCell as RscEntrySlateCell_0e78253914a550fdacd75626f1dabe17 } from "@payloadcms/richtext-slate/rsc";
 import { RscEntrySlateField as RscEntrySlateField_0e78253914a550fdacd75626f1dabe17 } from "@payloadcms/richtext-slate/rsc";
@@ -51,6 +52,7 @@ import { default as default_e31bcf515cd8b862fdf66b686993753c } from "@/custom-fi
 export const importMap = {
   "@/custom-fields/rbac/RolesCell#default": default_107fc84b51989a9311b84df2fe9268f5,
   "@/custom-fields/rbac/RolesField#default": default_4795e93826f23d1a51a17a382613ea2e,
+  "@/custom-fields/alt-text/AltTextField#default": default_31e3c8050ee0801a8b2350926031bd4c,
   "@/custom-fields/translation/TranslateField#default": default_b4269fb77b98dc3ec18f9935599eb1f2,
   "@payloadcms/richtext-slate/rsc#RscEntrySlateCell":
     RscEntrySlateCell_0e78253914a550fdacd75626f1dabe17,

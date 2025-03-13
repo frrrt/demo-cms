@@ -1,0 +1,23 @@
+.character-counter-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border-radius: 3px;
+  height: 24px;
+
+  &.good {
+    background-color: var(--theme-success-200);
+    border: 1px solid var(--theme-success-400);
+  }
+
+  &.improve {
+    background-color: var(--theme-warning-200);
+    border: 1px solid var(--theme-warning-400);
+  }
+
+  .counter-number {
+    font-weight: 600;
+    margin-right: 5px;
+  }
+}

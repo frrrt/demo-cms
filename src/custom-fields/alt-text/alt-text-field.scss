@@ -1,0 +1,17 @@
+.custom-alt-text-field {
+  .alt-text-controls {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--base);
+  }
+
+  .alt-text-controls button {
+    margin: 0rem;
+    margin-right: 12px;
+  }
+
+  .alt-text-error {
+    color: var(--theme-error-500);
+  }
+}

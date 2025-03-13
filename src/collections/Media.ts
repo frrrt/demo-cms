@@ -11,7 +11,12 @@ export const Media: CollectionConfig = {
     {
       name: "alt",
       type: "text",
-      required: true,
+      localized: true,
+      admin: {
+        components: {
+          Field: "@/custom-fields/alt-text/AltTextField",
+        },
+      },
     },
   ],
   upload: true,
