@@ -12,17 +12,59 @@ export async function generateChatCompletion(
   context: string,
   model: string,
   term: string,
+  cookieString: string,
+  imageUrl?: string,
 ) {
   let chatCompletion;
 
   try {
-    chatCompletion = await openai.chat.completions.create({
-      messages: [
-        {
-          role: "user",
-          content: replaceTemplateVariables(locale, context, term, askChatgptPrompt),
+    const baseContent = replaceTemplateVariables(locale, context, term, askChatgptPrompt);
+
+    const messages = [];
+
+    if (imageUrl) {
+      const imageResponse = await fetch(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}${imageUrl}`, {
+        headers: {
+          Cookie: cookieString,
         },
-      ],
+        credentials: "include",
+      });
+
+      if (!imageResponse.ok) {
+        throw new Error(
+          `Failed to fetch image from ${imageUrl}: ${imageResponse.status} ${imageResponse.statusText}`,
+        );
+      }
+
+      const imageArrayBuffer = await imageResponse.arrayBuffer();
+      const base64Image = Buffer.from(imageArrayBuffer).toString("base64");
+      const contentType = imageResponse.headers.get("content-type") || "image/jpeg";
+
+      messages.push({
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text: baseContent,
+          },
+          {
+            type: "image_url",
+            image_url: {
+              url: `data:${contentType};base64,${base64Image}`,
+            },
+          },
+        ],
+      });
+    } else {
+      messages.push({
+        role: "user",
+        content: baseContent,
+      });
+    }
+
+    chatCompletion = await openai.chat.completions.create({
+      // @ts-expect-error Still works, but the type definition is not up-to-date
+      messages,
       model,
       tools: toolsDefinition,
       tool_choice: "auto",
@@ -31,7 +73,8 @@ export async function generateChatCompletion(
       top_p: 1,
     });
   } catch (error) {
-    console.error("Error fetching translations:", error);
+    console.error("Error in chat completion:", error);
+    throw error;
   }
 
   return chatCompletion;

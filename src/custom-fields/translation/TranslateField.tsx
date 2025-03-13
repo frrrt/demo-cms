@@ -34,13 +34,16 @@ export default function TranslateField({ path, readOnly, field }: TextFieldClien
   const term = documentData?.[path] || "";
   const context = documentData?.description || "";
 
+  const imageUrl = documentData?.["context-image"]?.url;
+
   const {
     data: translations,
     isLoading: isLoadingTranslations,
     error: translationError,
   } = useSWR(
-    shouldFetchTranslations && term ? getTranslationUrl(locale, term, context) : null,
+    shouldFetchTranslations && term ? getTranslationUrl(locale, term, context, imageUrl) : null,
     fetcher,
+    { revalidateOnFocus: false, revalidateOnReconnect: false },
   );
 
   const { value = "", setValue } = useField<string>({
@@ -66,7 +69,7 @@ export default function TranslateField({ path, readOnly, field }: TextFieldClien
             size="small"
             buttonStyle="secondary"
             onClick={() => setShouldFetchTranslations(true)}
-            disabled={readOnly || !term || isLoadingTranslations}
+            disabled={readOnly || !term || isLoadingTranslations || shouldFetchTranslations}
           >
             {isLoadingTranslations ? "Translating..." : "Ask ChatGPT"}
           </Button>

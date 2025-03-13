@@ -4,6 +4,7 @@ import { validateTranslationResponse } from "./validateTranslationResponse";
 import { generateChatCompletion } from "./generateChatCompletion";
 import { validateQueryParams } from "./validateQueryParams";
 import { ROUTE_TRANSLATION_STRING } from "@/const/routes";
+import { cookies } from "next/headers";
 
 // The endpoint takes a term, a target locale, and a context as query parameters.
 // Apart from some validation both for the input as well as the output, the endpoint
@@ -27,9 +28,15 @@ export const endpointTranslateString: Endpoint = {
       return Response.json({ error: "Query parameters could not be validated" }, { status: 400 });
     }
 
-    const { locale, term, context } = validated;
+    const { locale, term, context, imageUrl } = validated;
 
     const { askChatgptPrompt, model } = await getSettings(req);
+
+    const cookieStore = await cookies();
+    const cookieString = cookieStore
+      .getAll()
+      .map((cookie) => `${cookie.name}=${cookie.value}`)
+      .join("; ");
 
     const chatCompletion = await generateChatCompletion(
       askChatgptPrompt,
@@ -37,6 +44,8 @@ export const endpointTranslateString: Endpoint = {
       context,
       model,
       term,
+      cookieString,
+      imageUrl,
     );
 
     const result = validateTranslationResponse(chatCompletion);
