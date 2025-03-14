@@ -1,9 +1,9 @@
-import { DEFAULT_LOCALE } from "@/const/locales";
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_ADMIN, ROLE_EDITOR } from "@/custom-fields/rbac/roles";
+import { createRevalidationHook } from "@/hooks/createRevalidationHook";
 import { Page } from "@/payload-types";
 import { validateAlphaNumeric } from "@/validation/validateAlphaNumeric";
-import { CollectionConfig, PayloadRequest } from "payload";
+import { CollectionConfig } from "payload";
 
 const Pages: CollectionConfig = {
   slug: "pages",
@@ -23,27 +23,7 @@ const Pages: CollectionConfig = {
     },
   },
   hooks: {
-    afterChange: [
-      async ({ doc, req }: { doc: Page; req: PayloadRequest }) => {
-        const response = await fetch(process.env.NEXTJS_FRONTEND_URL + "/api/revalidate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            token: process.env.REVALIDATION_TOKEN,
-            tag: (req.locale || DEFAULT_LOCALE) + "-" + doc.id,
-          }),
-        });
-
-        if (!response.ok) {
-          req.payload.logger.error(
-            `Failed to revalidate page: '${doc.id}'. Response: `,
-            await response.json(),
-          );
-        }
-      },
-    ],
+    afterChange: [createRevalidationHook((doc: Page, locale?: string) => `${locale}-${doc.id}`)],
   },
   fields: [
     {

@@ -1,9 +1,11 @@
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { isUser, ROLE_ADMIN, ROLE_EDITOR, ROLE_TRANSLATOR } from "@/custom-fields/rbac/roles";
+import { createRevalidationHook } from "@/hooks/createRevalidationHook";
+import { UiString } from "@/payload-types";
 import { validateAlphaNumeric } from "@/validation/validateAlphaNumeric";
 import { CollectionConfig } from "payload";
 
-export const UISTRING_SLUG = "ui-strings";
+export const UISTRING_SLUG = "ui-strings" as const;
 
 const UIStrings: CollectionConfig = {
   slug: UISTRING_SLUG,
@@ -82,6 +84,7 @@ const UIStrings: CollectionConfig = {
         return data;
       },
     ],
+    afterChange: [createRevalidationHook((doc: UiString) => `uistring-${doc.id.split("-")[0]}`)],
   },
   admin: {
     listSearchableFields: ["description", "text"],
