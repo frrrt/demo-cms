@@ -46,6 +46,17 @@ const Pages: CollectionConfig = {
       },
     },
     {
+      name: "metaDescription",
+      label: "Meta Description",
+      type: "text",
+      localized: true,
+      admin: {
+        components: {
+          Field: "@/custom-fields/translation/TranslateField",
+        },
+      },
+    },
+    {
       name: "image",
       type: "upload",
       relationTo: "media",

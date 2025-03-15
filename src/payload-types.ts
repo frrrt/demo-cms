@@ -168,6 +168,7 @@ export interface Media {
 export interface Page {
   id: string;
   title?: string | null;
+  metaDescription?: string | null;
   image?: (string | null) | Media;
   content?:
     | {
@@ -318,6 +319,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface PagesSelect<T extends boolean = true> {
   id?: T;
   title?: T;
+  metaDescription?: T;
   image?: T;
   content?: T;
   updatedAt?: T;
