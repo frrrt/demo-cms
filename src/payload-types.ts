@@ -187,7 +187,7 @@ export interface UiString {
   id: string;
   text?: string | null;
   description?: string | null;
-  "context-image"?: (string | null) | UiStringMedia;
+  contextImage?: (string | null) | UiStringMedia;
   updatedAt: string;
   createdAt: string;
 }
@@ -334,7 +334,7 @@ export interface UiStringsSelect<T extends boolean = true> {
   id?: T;
   text?: T;
   description?: T;
-  "context-image"?: T;
+  contextImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }
