@@ -2,7 +2,7 @@ import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { isUser, ROLE_ADMIN, ROLE_TRANSLATOR } from "@/custom-fields/rbac/roles";
 import { CollectionConfig } from "payload";
 
-export const UiStringMedia: CollectionConfig = {
+const UiStringMedia: CollectionConfig = {
   slug: "ui-string-media",
   labels: {
     singular: "UI String Media",
@@ -18,3 +18,5 @@ export const UiStringMedia: CollectionConfig = {
   fields: [],
   upload: true,
 };
+
+export default UiStringMedia;

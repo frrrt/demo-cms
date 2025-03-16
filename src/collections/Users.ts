@@ -4,7 +4,7 @@ import { isUser, ROLE_ADMIN } from "@/custom-fields/rbac/roles";
 import { isSelf } from "@/custom-fields/rbac/isSelf";
 import type { CollectionConfig } from "payload";
 
-export const Users: CollectionConfig = {
+const Users: CollectionConfig = {
   slug: "users",
   admin: {
     useAsTitle: "email",
@@ -34,3 +34,5 @@ export const Users: CollectionConfig = {
     rbacField,
   ],
 };
+
+export default Users;

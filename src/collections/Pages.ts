@@ -30,6 +30,7 @@ const Pages: CollectionConfig = {
       name: "id",
       label: "Slug",
       type: "text",
+      required: true,
       // Custom ID field, since the ID is used by Payload in the URL, it needs to follow certain rules as not to break the application.
       // / and . obviously dont work for example.
       validate: validateAlphaNumeric("Slug"),

@@ -1,6 +1,6 @@
 import type { CollectionConfig } from "payload";
 
-export const Media: CollectionConfig = {
+const Media: CollectionConfig = {
   slug: "media",
   access: {
     // These are public images, so access is always granted.
@@ -21,3 +21,5 @@ export const Media: CollectionConfig = {
   ],
   upload: true,
 };
+
+export default Media;

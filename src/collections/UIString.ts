@@ -61,7 +61,7 @@ const UIStrings: CollectionConfig = {
       type: "text",
     },
     {
-      name: "context-image",
+      name: "contextImage",
       label: "Context Image",
       type: "upload",
       relationTo: "ui-string-media",

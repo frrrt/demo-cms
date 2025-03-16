@@ -5,13 +5,13 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users";
-import { Media } from "./collections/Media";
+import Users from "./collections/Users";
+import Media from "./collections/Media";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import Pages from "./collections/Pages";
 import UIStrings from "./collections/UIString";
 import { DEFAULT_LOCALE, LOCALES } from "./const/locales";
-import { UiStringMedia } from "./collections/UIStringMedia";
+import UiStringMedia from "./collections/UIStringMedia";
 import { endpointTranslateString } from "./custom-endpoints/translateString/endpointTranslateString";
 import Settings from "./collections/Settings";
 import { endpointGenerateAltText } from "./custom-endpoints/alt-text/endpointGenerateAltText";

@@ -34,7 +34,7 @@ export default function TranslateField({ path, readOnly, field }: TextFieldClien
   const term = documentData?.[path] || "";
   const context = documentData?.description || "";
 
-  const imageUrl = documentData?.["context-image"]?.url;
+  const imageUrl = documentData?.contextImage?.url;
 
   const {
     data: translations,
