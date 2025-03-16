@@ -8,7 +8,18 @@ import { CollectionConfig } from "payload";
 const Pages: CollectionConfig = {
   slug: "pages",
   access: {
-    read: () => true,
+    // Only logged in users can read draft pages as well.
+    read: ({ req }) => {
+      if (req.user) {
+        return true;
+      }
+
+      return {
+        _status: {
+          equals: "published",
+        },
+      };
+    },
     // Only editors and admins can create and update pages.
     create: rbacHas(ROLE_EDITOR),
     update: rbacHas(ROLE_EDITOR),
