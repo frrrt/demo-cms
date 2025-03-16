@@ -84,7 +84,7 @@ const UIStrings: CollectionConfig = {
         return data;
       },
     ],
-    afterChange: [createRevalidationHook((doc: UiString) => `uistring-${doc.id.split("-")[0]}`)],
+    afterChange: [createRevalidationHook((doc: UiString) => [`uistring-${doc.id.split("-")[0]}`])],
   },
   admin: {
     listSearchableFields: ["description", "text"],
