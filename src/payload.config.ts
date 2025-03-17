@@ -41,7 +41,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || "",
   }),
-  cors: ["http://localhost:3000", "https://demo-cms-ashen.vercel.app"],
+  cors: ["http://localhost:3000", "https://demo-frontend-sigma.vercel.app"],
   sharp,
   plugins: [
     s3Storage({
