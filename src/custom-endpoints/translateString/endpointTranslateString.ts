@@ -30,7 +30,7 @@ export const endpointTranslateString: Endpoint = {
 
     const { locale, term, context, imageUrl } = validated;
 
-    const { askChatgptPrompt, model } = await getSettings(req);
+    const { askChatgptPrompt, chatgptModel } = await getSettings(req);
 
     const cookieStore = await cookies();
     const cookieString = cookieStore
@@ -42,7 +42,7 @@ export const endpointTranslateString: Endpoint = {
       askChatgptPrompt,
       locale,
       context,
-      model,
+      chatgptModel,
       term,
       cookieString,
       imageUrl,
