@@ -14,6 +14,8 @@ const Settings: GlobalConfig = {
       name: "chatgptModel",
       label: "ChatGPT model used for translations",
       type: "text",
+      required: true,
+      defaultValue: "",
       admin: {
         components: {
           Field: "@/custom-fields/select-chatgpt-models/SelectField",
@@ -24,8 +26,20 @@ const Settings: GlobalConfig = {
       name: "askChatgptPrompt",
       label: "Ask ChatGPT Prompt ",
       type: "textarea",
+      required: true,
+      defaultValue: "",
       admin: {
         description: "Available placeholder: {locale}, {context}, {term}",
+      },
+    },
+    {
+      name: "altTextPrompt",
+      label: "Alt Text Prompt",
+      type: "textarea",
+      required: true,
+      defaultValue: "",
+      admin: {
+        description: "Available placeholder: {locale}",
       },
     },
   ],

@@ -3,6 +3,7 @@ import { ROUTE_ALT_TEXT } from "@/const/routes";
 import OpenAI from "openai";
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_EDITOR } from "@/custom-fields/rbac/roles";
+import { getSettings } from "../translateString/getSettings";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -53,6 +54,8 @@ export const endpointGenerateAltText: Endpoint = {
 
       const contentType = imageResponse.headers.get("content-type") || "image/jpeg";
 
+      const { altTextPrompt } = await getSettings(req);
+
       const response = await openai.chat.completions.create({
         model: "gpt-4o",
         messages: [
@@ -61,7 +64,7 @@ export const endpointGenerateAltText: Endpoint = {
             content: [
               {
                 type: "text",
-                text: `Generate a alt text for the image, between 125-150 chars long. Focus on the key visual elements. Write the alt text in the following locale: ${locale}`,
+                text: altTextPrompt.replace("{locale}", locale),
               },
               {
                 type: "image_url",
@@ -73,6 +76,7 @@ export const endpointGenerateAltText: Endpoint = {
           },
         ],
         max_tokens: 300,
+        temperature: 0,
       });
 
       const altText = response.choices[0]?.message?.content || "No description generated";
