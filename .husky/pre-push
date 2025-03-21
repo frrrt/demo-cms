@@ -2,8 +2,8 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # Generate import map and payload types
-pnpm generate:types
-pnpm generate:importmap
+pnpm gen:types
+pnpm gen:imp
 pnpm prettier --write "src/payload-types.ts" "src/app/(payload)/admin/importMap.js"
 
 # Check if these have changed
