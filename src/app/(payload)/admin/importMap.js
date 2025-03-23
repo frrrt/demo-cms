@@ -48,6 +48,8 @@ import { WithUpload as WithUpload_0b388c087d9de8c4f011dd323a130cfb } from "@payl
 import { default as default_7e67357763c812bcd3d451d8e0036d39 } from "@/custom-fields/default-language-text/DefaultLanguageTextField";
 import { default as default_b89ec98d141f48f4563acf9fb4e24bfa } from "@/custom-fields/default-language-text/DefaultLanguageTextCell";
 import { default as default_e31bcf515cd8b862fdf66b686993753c } from "@/custom-fields/select-chatgpt-models/SelectField";
+import { default as default_fe9ca0c9b67829fe284b73bb77968447 } from "@/components/Icon";
+import { default as default_2b7e2e151f989fb419ce3009e56b903e } from "@/components/Logo";
 
 export const importMap = {
   "@/custom-fields/rbac/RolesCell#default": default_107fc84b51989a9311b84df2fe9268f5,
@@ -135,4 +137,6 @@ export const importMap = {
     default_b89ec98d141f48f4563acf9fb4e24bfa,
   "@/custom-fields/select-chatgpt-models/SelectField#default":
     default_e31bcf515cd8b862fdf66b686993753c,
+  "@/components/Icon#default": default_fe9ca0c9b67829fe284b73bb77968447,
+  "@/components/Logo#default": default_2b7e2e151f989fb419ce3009e56b903e,
 };

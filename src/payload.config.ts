@@ -5,7 +5,7 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import Users from "./collections/Users";
+import Users from "@/collections/Users";
 import Media from "./collections/Media";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import Pages from "./collections/Pages";
@@ -24,6 +24,12 @@ export default buildConfig({
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      graphics: {
+        Logo: "@/components/Logo",
+        Icon: "@/components/Icon",
+      },
     },
   },
   localization: {

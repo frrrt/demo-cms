@@ -14,6 +14,7 @@ Notable features include:
 - **S3 Storage Plugin for Payload CMS**: see `payload.config.ts`
 - **Media Collections with Upload functionality**: see `src/collections/Media` and `src/collections/UIStringMedia`
 - **Live Preview and tag base cache revalidation**: see `src/collections/Pages`
+- **Custom Icon and Logo**: see `src/components/Icon`, `src/components/Logo` and `src/payload.config.ts`
 
 ## Hosting
 
