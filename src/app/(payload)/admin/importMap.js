@@ -50,6 +50,7 @@ import { default as default_b89ec98d141f48f4563acf9fb4e24bfa } from "@/custom-fi
 import { default as default_e31bcf515cd8b862fdf66b686993753c } from "@/custom-fields/select-chatgpt-models/SelectField";
 import { default as default_fe9ca0c9b67829fe284b73bb77968447 } from "@/components/Icon";
 import { default as default_2b7e2e151f989fb419ce3009e56b903e } from "@/components/Logo";
+import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from "@payloadcms/storage-s3/client";
 
 export const importMap = {
   "@/custom-fields/rbac/RolesCell#default": default_107fc84b51989a9311b84df2fe9268f5,
@@ -139,4 +140,6 @@ export const importMap = {
     default_e31bcf515cd8b862fdf66b686993753c,
   "@/components/Icon#default": default_fe9ca0c9b67829fe284b73bb77968447,
   "@/components/Logo#default": default_2b7e2e151f989fb419ce3009e56b903e,
+  "@payloadcms/storage-s3/client#S3ClientUploadHandler":
+    S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24,
 };
