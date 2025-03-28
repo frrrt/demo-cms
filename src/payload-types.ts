@@ -67,6 +67,7 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    authors: Author;
     users: User;
     media: Media;
     pages: Page;
@@ -78,6 +79,7 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    authors: AuthorsSelect<false> | AuthorsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
@@ -127,21 +129,32 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "authors".
  */
-export interface User {
+export interface Author {
   id: string;
-  roles: number;
+  name: string;
+  /**
+   * Author's email address (must be unique)
+   */
+  email: string;
+  avatar?: (string | null) | Media;
+  bio?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  /**
+   * Add topics this author specializes in
+   */
+  expertise?:
+    | {
+        topic: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -164,11 +177,30 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  roles: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
   id: string;
   title?: string | null;
+  author?: (string | null) | Author;
   metaDescription?: string | null;
   image?: (string | null) | Media;
   content?:
@@ -217,6 +249,10 @@ export interface UiStringMedia {
 export interface PayloadLockedDocument {
   id: string;
   document?:
+    | ({
+        relationTo: "authors";
+        value: string | Author;
+      } | null)
     | ({
         relationTo: "users";
         value: string | User;
@@ -281,6 +317,24 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors_select".
+ */
+export interface AuthorsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  avatar?: T;
+  bio?: T;
+  expertise?:
+    | T
+    | {
+        topic?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -320,6 +374,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface PagesSelect<T extends boolean = true> {
   id?: T;
   title?: T;
+  author?: T;
   metaDescription?: T;
   image?: T;
   content?: T;

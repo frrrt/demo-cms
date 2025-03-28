@@ -63,6 +63,13 @@ const Pages: CollectionConfig = {
       },
     },
     {
+      name: "author",
+      type: "relationship",
+      relationTo: "authors",
+      hasMany: false,
+      admin: {},
+    },
+    {
       name: "metaDescription",
       label: "Meta Description",
       type: "text",

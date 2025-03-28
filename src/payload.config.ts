@@ -15,6 +15,7 @@ import UiStringMedia from "./collections/UIStringMedia";
 import { endpointTranslateString } from "./custom-endpoints/translateString/endpointTranslateString";
 import Settings from "./collections/Settings";
 import { endpointGenerateAltText } from "./custom-endpoints/alt-text/endpointGenerateAltText";
+import Authors from "./collections/Authors";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -37,7 +38,7 @@ export default buildConfig({
     defaultLocale: DEFAULT_LOCALE,
     fallback: true,
   },
-  collections: [Users, Media, Pages, UIStrings, UiStringMedia],
+  collections: [Authors, Users, Media, Pages, UIStrings, UiStringMedia],
   globals: [Settings],
   editor: slateEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
