@@ -34,12 +34,7 @@ const Pages: CollectionConfig = {
     },
   },
   hooks: {
-    afterChange: [
-      createRevalidationHook((doc: Page, locale?: string) => [
-        `${locale}-pages`,
-        `${locale}-page-${doc.id}`,
-      ]),
-    ],
+    afterChange: [createRevalidationHook((doc: Page) => [`pages`, `page-${doc.id}`])],
   },
   fields: [
     {

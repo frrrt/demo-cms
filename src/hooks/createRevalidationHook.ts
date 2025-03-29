@@ -1,11 +1,10 @@
-import { DEFAULT_LOCALE } from "@/const/locales";
 import { PayloadRequest } from "payload";
 
 export function createRevalidationHook<T extends { id: string }>(
-  tagGenerator: (doc: T, locale?: string) => string[],
+  tagGenerator: (doc: T) => string[],
 ) {
   return async function revalidateContent({ doc, req }: { doc: T; req: PayloadRequest }) {
-    const tags = tagGenerator(doc, req.locale || DEFAULT_LOCALE);
+    const tags = tagGenerator(doc);
 
     try {
       const response = await fetch(`${process.env.NEXTJS_FRONTEND_URL}/api/revalidate`, {
