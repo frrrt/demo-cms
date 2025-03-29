@@ -56,6 +56,7 @@ const Pages: CollectionConfig = {
       label: "Title",
       type: "text",
       localized: true,
+      required: true,
       admin: {
         components: {
           Field: "@/custom-fields/translation/TranslateField",
@@ -74,6 +75,7 @@ const Pages: CollectionConfig = {
       label: "Meta Description",
       type: "text",
       localized: true,
+      required: true,
       admin: {
         components: {
           Field: "@/custom-fields/translation/TranslateField",
@@ -90,6 +92,7 @@ const Pages: CollectionConfig = {
       name: "content",
       label: "Content",
       type: "richText",
+      required: true,
       localized: true,
     },
   ],
