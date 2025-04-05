@@ -1,9 +1,9 @@
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_ADMIN, ROLE_EDITOR } from "@/custom-fields/rbac/roles";
 import { createRevalidationHook } from "@/hooks/createRevalidationHook";
-import { Page } from "@/payload-types";
+import type { Page } from "@/payload-types";
 import { validateAlphaNumeric } from "@/validation/validateAlphaNumeric";
-import { CollectionConfig } from "payload";
+import type { CollectionConfig } from "payload";
 
 const Pages: CollectionConfig = {
   slug: "pages",
@@ -34,7 +34,7 @@ const Pages: CollectionConfig = {
     },
   },
   hooks: {
-    afterChange: [createRevalidationHook((doc: Page) => [`pages`, `page-${doc.id}`])],
+    afterChange: [createRevalidationHook<Page>(({ doc }) => [`pages`, `page-${doc.id}`])],
   },
   fields: [
     {

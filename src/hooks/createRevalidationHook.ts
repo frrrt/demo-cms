@@ -1,10 +1,10 @@
-import { PayloadRequest } from "payload";
+import type { PayloadRequest } from "payload";
 
 export function createRevalidationHook<T extends { id: string }>(
-  tagGenerator: (doc: T) => string[],
+  tagGenerator: ({ doc, req }: { doc: T; req: PayloadRequest }) => string[] | Promise<string[]>,
 ) {
   return async function revalidateContent({ doc, req }: { doc: T; req: PayloadRequest }) {
-    const tags = tagGenerator(doc);
+    const tags = await tagGenerator({ doc, req });
 
     try {
       const response = await fetch(`${process.env.NEXTJS_FRONTEND_URL}/api/revalidate`, {
