@@ -1,3 +1,5 @@
+import { createRevalidationHook } from "@/hooks/createRevalidationHook";
+import type { Media } from "@/payload-types";
 import type { CollectionConfig } from "payload";
 
 const Media: CollectionConfig = {
@@ -19,6 +21,23 @@ const Media: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [
+      createRevalidationHook<Media>(async ({ doc, req }) => {
+        const pages = await req.payload.find({
+          collection: "pages",
+          where: {
+            image: {
+              equals: doc.id,
+            },
+          },
+          depth: 0,
+        });
+
+        return pages.docs.map((page) => `page-${page.id}`);
+      }),
+    ],
+  },
   upload: true,
 };
 
