@@ -12,13 +12,19 @@ import { PayloadRequest } from "payload";
 export const ROLE_ADMIN = 1;
 export const ROLE_EDITOR = 2;
 export const ROLE_TRANSLATOR = 4;
+export const ROLE_MODERATOR = 4;
 
-export type ROLE = typeof ROLE_ADMIN | typeof ROLE_EDITOR | typeof ROLE_TRANSLATOR;
+export type ROLE =
+  | typeof ROLE_ADMIN
+  | typeof ROLE_EDITOR
+  | typeof ROLE_TRANSLATOR
+  | typeof ROLE_MODERATOR;
 
 export const ROLES = [
   { label: "Admin", value: ROLE_ADMIN },
   { label: "Editor", value: ROLE_EDITOR },
   { label: "Translator", value: ROLE_TRANSLATOR },
+  { label: "Moderator", value: ROLE_MODERATOR },
 ];
 
 export function isAuthenticated(user: User | null | undefined): user is User {
