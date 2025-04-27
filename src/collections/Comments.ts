@@ -98,7 +98,10 @@ const Comments: CollectionConfig = {
   ],
   hooks: {
     afterChange: [
-      createRevalidationHook<Comment>(({ doc }) => [`comments-page-${(doc.page as Page).id}`]),
+      createRevalidationHook<Comment>(({ doc }) =>
+        // revalidation is only needed for non-harmful comments
+        doc.isHarmful ? [] : [`comments-page-${(doc.page as Page).id}`],
+      ),
     ],
     beforeChange: [checkHarmfulHook],
   },
