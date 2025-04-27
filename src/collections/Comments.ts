@@ -1,16 +1,24 @@
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_MODERATOR } from "@/custom-fields/rbac/roles";
+import { checkHarmfulHook } from "@/helper/checkHarmfulHook";
 import type { CollectionConfig } from "payload";
 
 const Comments: CollectionConfig = {
   slug: "comments",
   access: {
-    // Public can read non-harmful comments
-    read: () => ({
-      isHarmful: {
-        not_equals: true,
-      },
-    }),
+    // Only filter harmful comments for non-logged in users
+    read: ({ req }) => {
+      if (req.user) {
+        return true;
+      }
+
+      // For non-logged in users, filter out harmful comments
+      return {
+        isHarmful: {
+          not_equals: true,
+        },
+      };
+    },
     create: () => true,
     update: rbacHas(ROLE_MODERATOR),
     delete: rbacHas(ROLE_MODERATOR),
