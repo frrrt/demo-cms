@@ -42,6 +42,16 @@ const Settings: GlobalConfig = {
         description: "Available placeholder: {locale}",
       },
     },
+    {
+      name: "harmfulContentPrompt",
+      label: "Harmful Content Prompt",
+      type: "textarea",
+      required: true,
+      defaultValue: "",
+      admin: {
+        description: "ChatGPT Prompt for tagging harmful content, for example comments",
+      },
+    },
   ],
 };
 

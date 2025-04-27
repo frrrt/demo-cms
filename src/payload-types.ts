@@ -509,6 +509,10 @@ export interface Setting {
    * Available placeholder: {locale}
    */
   altTextPrompt: string;
+  /**
+   * ChatGPT Prompt for tagging harmful content, for example comments
+   */
+  harmfulContentPrompt: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -520,6 +524,7 @@ export interface SettingsSelect<T extends boolean = true> {
   chatgptModel?: T;
   askChatgptPrompt?: T;
   altTextPrompt?: T;
+  harmfulContentPrompt?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

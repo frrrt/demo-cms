@@ -41,7 +41,7 @@ const Comments: CollectionConfig = {
     },
     {
       name: "authorName",
-      label: "Name",
+      label: "Author",
       type: "text",
       required: true,
       admin: {
@@ -70,7 +70,6 @@ const Comments: CollectionConfig = {
       name: "isHarmful",
       label: "Flag as Harmful",
       type: "checkbox",
-      defaultValue: false,
       admin: {
         description: "Check this box to flag harmful content that should not be published",
       },
@@ -86,19 +85,7 @@ const Comments: CollectionConfig = {
     },
   ],
   hooks: {
-    beforeChange: [
-      ({ operation, data }) => {
-        // If creating a comment, set harmful to false by default
-        if (operation === "create") {
-          return {
-            ...data,
-            isHarmful: false,
-            harmfulReason: "",
-          };
-        }
-        return data;
-      },
-    ],
+    beforeChange: [checkHarmfulHook],
   },
 };
 
