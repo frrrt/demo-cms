@@ -31,7 +31,7 @@ export const checkHarmfulHook = async ({
       },
       {
         role: "user",
-        content: `User: ${data.authorName} Comment: ${data.commentText}`,
+        content: `User: ${data.authorName} Email: ${data.authorEmail} Comment: ${data.commentText}`,
       },
     ],
     response_format: zodResponseFormat(
