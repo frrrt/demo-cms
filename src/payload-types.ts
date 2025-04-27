@@ -242,6 +242,10 @@ export interface Comment {
    * Explain why this comment was flagged as harmful
    */
   harmfulReason?: string | null;
+  /**
+   * Gives an idea of how confident the AI is about the harmfulness of the content
+   */
+  harmfulConfidence?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -430,6 +434,7 @@ export interface CommentsSelect<T extends boolean = true> {
   commentText?: T;
   isHarmful?: T;
   harmfulReason?: T;
+  harmfulConfidence?: T;
   updatedAt?: T;
   createdAt?: T;
 }

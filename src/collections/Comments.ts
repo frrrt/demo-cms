@@ -1,6 +1,8 @@
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_MODERATOR } from "@/custom-fields/rbac/roles";
 import { checkHarmfulHook } from "@/helper/checkHarmfulHook";
+import { createRevalidationHook } from "@/hooks/createRevalidationHook";
+import { Comment, Page } from "@/payload-types";
 import type { CollectionConfig } from "payload";
 
 const Comments: CollectionConfig = {
@@ -80,6 +82,16 @@ const Comments: CollectionConfig = {
       type: "textarea",
       admin: {
         description: "Explain why this comment was flagged as harmful",
+        condition: (data) => Boolean(data?.isHarmful),
+      },
+    },
+    {
+      name: "harmfulConfidence",
+      label: "Confidence Level of Harmfulness",
+      type: "number",
+      admin: {
+        description:
+          "Gives an idea of how confident the AI is about the harmfulness of the content",
         condition: (data) => Boolean(data?.isHarmful),
       },
     },

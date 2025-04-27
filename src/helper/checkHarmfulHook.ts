@@ -38,6 +38,7 @@ export const checkHarmfulHook = async ({
       z.object({
         isHarmful: z.boolean(),
         harmfulReason: z.string(),
+        harmfulConfidence: z.number(),
       }),
       "isHarmful",
     ),
@@ -46,6 +47,7 @@ export const checkHarmfulHook = async ({
   if (completion.choices[0]?.message?.parsed?.isHarmful !== undefined) {
     data.isHarmful = completion.choices[0].message.parsed.isHarmful;
     data.harmfulReason = completion.choices[0].message.parsed.harmfulReason;
+    data.harmfulConfidence = completion.choices[0].message.parsed.harmfulConfidence;
   } else {
     throw new Error("Unable to determine if the content is harmful");
   }
