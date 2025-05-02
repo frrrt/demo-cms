@@ -1,3 +1,4 @@
+import { LOCALES } from "@/const/locales";
 import { rbacHas } from "@/custom-fields/rbac/rbacHas";
 import { ROLE_MODERATOR } from "@/custom-fields/rbac/roles";
 import { checkHarmfulHook } from "@/helper/checkHarmfulHook";
@@ -40,6 +41,19 @@ const Comments: CollectionConfig = {
       admin: {
         description: "The page this comment is associated with",
       },
+    },
+    {
+      name: "locale",
+      type: "select",
+      hasMany: false,
+      required: true,
+      admin: {
+        isClearable: false,
+      },
+      options: LOCALES.map((locale) => ({
+        label: locale,
+        value: locale,
+      })),
     },
     {
       name: "authorName",
