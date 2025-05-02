@@ -89,7 +89,7 @@ const UIStrings: CollectionConfig = {
     ],
   },
   admin: {
-    listSearchableFields: ["description", "text"],
+    listSearchableFields: ["id", "description", "text"],
   },
 };
 
