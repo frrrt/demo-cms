@@ -11,7 +11,6 @@ export const checkHarmfulHook = async ({
   data: Partial<Comment>;
   req: PayloadRequest;
 }) => {
-  console.log("checkHarmfulHook", data, data.isHarmful);
   // Once isHarmful is set, do not re-validate with AI
   if (data.isHarmful != undefined) {
     return data;
