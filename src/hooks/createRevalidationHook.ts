@@ -6,6 +6,10 @@ export function createRevalidationHook<T extends { id: string }>(
   return async function revalidateContent({ doc, req }: { doc: T; req: PayloadRequest }) {
     const tags = await tagGenerator({ doc, req });
 
+    if (tags.length === 0) {
+      return;
+    }
+
     try {
       const response = await fetch(`${process.env.NEXTJS_FRONTEND_URL}/api/revalidate`, {
         method: "POST",
