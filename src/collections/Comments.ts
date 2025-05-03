@@ -6,6 +6,9 @@ import { createRevalidationHook } from "@/hooks/createRevalidationHook";
 import { Comment, Page } from "@/payload-types";
 import type { CollectionConfig } from "payload";
 
+const tagGenerator = ({ doc }: { doc: Comment }) =>
+  doc.isHarmful ? [] : [`comments-page-${doc.locale}-${(doc.page as Page).id}`];
+
 const Comments: CollectionConfig = {
   slug: "comments",
   access: {
@@ -111,12 +114,8 @@ const Comments: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [
-      createRevalidationHook<Comment>(({ doc }) =>
-        // revalidation is only needed for non-harmful comments
-        doc.isHarmful ? [] : [`comments-page-${doc.locale}-${(doc.page as Page).id}`],
-      ),
-    ],
+    afterChange: [createRevalidationHook<Comment>(tagGenerator)],
+    afterDelete: [createRevalidationHook<Comment>(tagGenerator)],
     beforeChange: [checkHarmfulHook],
   },
 };
