@@ -90,6 +90,10 @@ const UIStrings: CollectionConfig = {
   },
   admin: {
     listSearchableFields: ["id", "description", "text"],
+    livePreview: {
+      url: ({ data, req }) =>
+        `${process.env.NEXTJS_FRONTEND_URL}/${req.locale}/uistring-preview?token=${process.env.PREVIEW_TOKEN}&icuMessage=${encodeURIComponent(data.text)}`,
+    },
   },
 };
 
