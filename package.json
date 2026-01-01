@@ -36,7 +36,7 @@
     "@payloadcms/ui": "3.30.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
-    "next": "15.2.3",
+    "next": "^16.1.1",
     "openai": "^4.89.0",
     "payload": "3.30.0",
     "react": "19.2.3",
