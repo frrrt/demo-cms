@@ -11,7 +11,7 @@
     "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "gen:imp": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "gen:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint --max-warnings 0",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint --max-warnings 0 .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "prettier": "prettier --write **/*.{js,jsx,ts,tsx}",
@@ -48,7 +48,6 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@types/jest": "^29.5.14",

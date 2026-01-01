@@ -237,7 +237,7 @@ async function run() {
       // Try first with the path alias if it works in your setup
       const configModule = await import("@payload-config");
       config = configModule.default;
-    } catch (error) {
+    } catch (_) {
       // Fallback to direct path if alias doesn't work
       console.log("Fallback to direct import...");
       const configModule = await import("./src/payload.config");
