@@ -51,6 +51,7 @@ import { default as default_e31bcf515cd8b862fdf66b686993753c } from '@/custom-fi
 import { default as default_fe9ca0c9b67829fe284b73bb77968447 } from '@/components/Icon'
 import { default as default_2b7e2e151f989fb419ce3009e56b903e } from '@/components/Logo'
 import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
+import { CollectionCards as CollectionCards_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 
 export const importMap = {
   "@payloadcms/richtext-slate/rsc#RscEntrySlateCell": RscEntrySlateCell_0e78253914a550fdacd75626f1dabe17,
@@ -105,5 +106,6 @@ export const importMap = {
   "@/custom-fields/select-chatgpt-models/SelectField#default": default_e31bcf515cd8b862fdf66b686993753c,
   "@/components/Icon#default": default_fe9ca0c9b67829fe284b73bb77968447,
   "@/components/Logo#default": default_2b7e2e151f989fb419ce3009e56b903e,
-  "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
+  "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24,
+  "@payloadcms/ui/rsc#CollectionCards": CollectionCards_ab83ff7e88da8d3530831f296ec4756a
 }

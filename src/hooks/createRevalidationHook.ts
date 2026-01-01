@@ -26,9 +26,9 @@ export function createRevalidationHook<T extends { id: string }>(
         throw new Error();
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       req.payload.logger.error(
-        `Error revalidating tags: '${tags.join(", ")}' for document: '${doc.id}'.`,
-        error,
+        `Error revalidating tags: '${tags.join(", ")}' for document: '${doc.id}'. ${errorMessage}`,
       );
     }
   };
